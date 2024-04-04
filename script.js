@@ -88,8 +88,8 @@ operators.forEach(operator => {
         decimal.disabled = false;
         if (first && operation) {
             second = parseFloat(display.textContent);
-            result = operate(first, operation, second);
-            display.textContent = result;
+            result = operate(first, operation, second).toFixed(5);
+            display.textContent = parseFloat(result).toString();
             first = result;
             operation = operator.textContent;
             resultShown = true
@@ -104,8 +104,8 @@ operators.forEach(operator => {
 equal.addEventListener("click", () => {
     if (first && operation) {
         second = parseFloat(display.textContent);
-        result = operate(first, operation, second);
-        display.textContent = result;
+        result = operate(first, operation, second).toFixed(5);
+        display.textContent = parseFloat(result).toString();
         first = result;
         second = undefined;
         operation = undefined;
