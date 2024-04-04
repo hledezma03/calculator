@@ -24,6 +24,7 @@ function clearDisplay() {
     first = 0;
     second = 0;
     operation = null
+    decimal.disabled = false
 }
 
 function deleteLastElement() {
@@ -53,6 +54,14 @@ const clear = document.querySelector('#clear');
 const equal = document.querySelector('#equal');
 const deleteBtn = document.querySelector('#delete');
 const porcentage = document.querySelector('#porcentage');
+const decimal = document.querySelector('#decimal');
+
+
+decimal.addEventListener("click", () => {
+    display.textContent += decimal.textContent
+    decimal.disabled = true
+})
+
 
 porcentage.addEventListener("click", () => {
     let displayNumber = parseFloat(display.textContent)
@@ -64,17 +73,19 @@ deleteBtn.addEventListener("click", () => deleteLastElement());
 clear.addEventListener("click", () => clearDisplay())
 
 numbers.forEach(number => {
-    number.addEventListener("click", ()=> {
-        if (resultShown) { 
-            display.textContent = '';
-            resultShown = false;
-        }
-        display.textContent += number.textContent;
-    });
+    
+        number.addEventListener("click", ()=> {
+            if (resultShown) { 
+                display.textContent = '';
+                resultShown = false;
+            }
+            display.textContent += number.textContent;
+        });
 });
 
 operators.forEach(operator => {
     operator.addEventListener("click", () => {
+        decimal.disabled = false;
         if (first && operation) {
             second = parseFloat(display.textContent);
             result = operate(first, operation, second);
