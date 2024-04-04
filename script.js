@@ -51,7 +51,13 @@ const numbers = document.querySelectorAll('.number');
 const operators = document.querySelectorAll('.operator');
 const clear = document.querySelector('#clear');
 const equal = document.querySelector('#equal');
-const deleteBtn = document.querySelector('#delete')
+const deleteBtn = document.querySelector('#delete');
+const porcentage = document.querySelector('#porcentage');
+
+porcentage.addEventListener("click", () => {
+    let displayNumber = parseFloat(display.textContent)
+    display.textContent = displayNumber / 100;
+})
 
 deleteBtn.addEventListener("click", () => deleteLastElement());
 
