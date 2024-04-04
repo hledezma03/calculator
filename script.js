@@ -25,6 +25,13 @@ function clearDisplay() {
     operation = null
 }
 
+function deleteLastElement() {
+    let displayContent = display.textContent
+    display.textContent = displayContent.slice(0,-1);
+}
+
+
+
 
 function operate(a,sign,b) {
     if (sign == '+') {
@@ -43,6 +50,9 @@ const numbers = document.querySelectorAll('.number');
 const operators = document.querySelectorAll('.operator');
 const clear = document.querySelector('#clear');
 const equal = document.querySelector('#equal');
+const deleteBtn = document.querySelector('#delete')
+
+deleteBtn.addEventListener("click", () => deleteLastElement());
 
 clear.addEventListener("click", () => clearDisplay())
 
