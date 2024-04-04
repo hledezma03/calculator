@@ -17,6 +17,7 @@ let first;
 let second;
 let result;
 let operation;
+let resultShown = false;
 
 function clearDisplay() {
     display.textContent = ''
@@ -58,6 +59,10 @@ clear.addEventListener("click", () => clearDisplay())
 
 numbers.forEach(number => {
     number.addEventListener("click", ()=> {
+        if (resultShown) { 
+            display.textContent = '';
+            resultShown = false;
+        }
         display.textContent += number.textContent;
     });
 });
@@ -70,8 +75,7 @@ operators.forEach(operator => {
             display.textContent = result;
             first = result;
             operation = operator.textContent;
-            second = undefined;
-            display.textContent = '';
+            resultShown = true
         } else {
             first = parseFloat(display.textContent);
             display.textContent = '';
@@ -79,17 +83,15 @@ operators.forEach(operator => {
         }
     })
 })
-console.log(first)
-console.log(second)
-console.log(operation)
+
 equal.addEventListener("click", () => {
     if (first && operation) {
         second = parseFloat(display.textContent);
         result = operate(first, operation, second);
         display.textContent = result;
-        console.log(`${first}    ${operation}    ${second}`);
         first = result;
         second = undefined;
         operation = undefined;
+        resultShown = true;
     }
 });
