@@ -13,6 +13,7 @@ function multiply(a,b) {
 function divide(a,b) {
     return a/b;
 }
+
 let first;
 let second;
 let result;
@@ -25,11 +26,6 @@ function clearDisplay() {
     second = 0;
     operation = null
     decimal.disabled = false
-}
-
-function deleteLastElement() {
-    let displayContent = display.textContent
-    display.textContent = displayContent.slice(0,-1);
 }
 
 
@@ -52,10 +48,15 @@ const numbers = document.querySelectorAll('.number');
 const operators = document.querySelectorAll('.operator');
 const clear = document.querySelector('#clear');
 const equal = document.querySelector('#equal');
-const deleteBtn = document.querySelector('#delete');
+const changeSignBtn = document.querySelector('#changeSign');
 const porcentage = document.querySelector('#porcentage');
 const decimal = document.querySelector('#decimal');
 
+
+changeSignBtn.addEventListener("click", () => {
+    let displayNumber = parseFloat(display.textContent);
+    display.textContent = displayNumber * -1;
+});
 
 decimal.addEventListener("click", () => {
     display.textContent += decimal.textContent
@@ -68,7 +69,6 @@ porcentage.addEventListener("click", () => {
     display.textContent = displayNumber / 100;
 })
 
-deleteBtn.addEventListener("click", () => deleteLastElement());
 
 clear.addEventListener("click", () => clearDisplay())
 
